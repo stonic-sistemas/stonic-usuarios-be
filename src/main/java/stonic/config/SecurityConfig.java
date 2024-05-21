@@ -1,11 +1,10 @@
 package stonic.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -13,7 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import lombok.RequiredArgsConstructor;
 import stonic.filter.JwtAuthenticationFilter;
 
-@Configuration
+@ComponentScan
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -24,9 +23,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
-        //Cross-Site Request Forgery (CSRF) → Validacion mediante un token
         return http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf ->
+                        csrf
+                                .disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/auth/**").permitAll()

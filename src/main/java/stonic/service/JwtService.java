@@ -18,8 +18,8 @@ public class JwtService {
 
     private static final String SECRET_KEY="586E3272357538782F413F4428472B4B6250855368566B598033733676397924";
 
-    public String getToken(UserDetails usuario) {
-        return getToken(new HashMap<>(), usuario);
+    public String getToken(UserDetails userDetails) {
+        return getToken(new HashMap<>(), userDetails);
     }
 
     private String getToken(HashMap<String,Object> extraClaims, UserDetails usuario) {

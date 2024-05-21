@@ -24,20 +24,12 @@ public class AuthController {
 	public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
 		return ResponseEntity.ok(/*new AuthResponse()*/  authService.login(request));
 		//return "Login from public endpoint";
-		
 	}
 
 	@PostMapping(value="/register")
 	public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
 		return ResponseEntity.ok(authService.register(request));
 		//return "Register from public endpoint";
-		
 	}
-	/*
-	@PostMapping(value="/register")
-	public String register(@RequestBody RegisterRequest request) {
-		return "Register from public endpoint";
-	}
-	*/
 
 }

@@ -35,7 +35,7 @@ public class AuthService {
     	Usuario usuario = Usuario.builder()
     			.nombre(request.getNombre())
     			.apellidos(request.getApellidos())
-    			.clave(request.getClave())
+    			.clave(passwordEncoder.encode( request.getClave()))
 				.dni(request.getDni())
 				.telefono(request.getTelefono())
     			.build()
