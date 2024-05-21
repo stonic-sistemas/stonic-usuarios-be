@@ -1,4 +1,4 @@
-package stonic.model;
+package stonic.stonicusuariosbe.model;
 
 public enum RolUsuario {
     ADMIN,

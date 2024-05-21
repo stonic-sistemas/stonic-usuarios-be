@@ -1,4 +1,4 @@
-package stonic.service;
+package stonic.stonicusuariosbe.service;
 
 import java.security.Key;
 import java.util.Date;
@@ -37,9 +37,13 @@ public class JwtService {
         byte[] keyBytes= Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
+    /*
     public String getUsernameFromToken(String token) {
         return getClaim(token, Claims::getSubject);
+    }
+    */
+    public String getUsernameFromToken(String token) {
+        return getClaim(token, claims -> claims.get("nombre", String.class));
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {

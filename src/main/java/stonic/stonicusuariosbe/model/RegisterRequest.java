@@ -1,4 +1,4 @@
-package stonic.model;
+package stonic.stonicusuariosbe.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    String token; 
+public class RegisterRequest {
+    String nombre;
+    String apellidos;
+    String clave;
+    String dni;
+    String telefono;
 }

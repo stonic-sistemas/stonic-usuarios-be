@@ -1,4 +1,4 @@
-package stonic.service;
+package stonic.stonicusuariosbe.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-import stonic.model.AuthResponse;
-import stonic.model.LoginRequest;
-import stonic.model.RegisterRequest;
-import stonic.model.Usuario;
-import stonic.model.UsuarioRepository;
+import stonic.stonicusuariosbe.model.AuthResponse;
+import stonic.stonicusuariosbe.model.LoginRequest;
+import stonic.stonicusuariosbe.model.RegisterRequest;
+import stonic.stonicusuariosbe.model.Usuario;
+import stonic.stonicusuariosbe.model.UsuarioRepository;
 
 @Service
 @RequiredArgsConstructor

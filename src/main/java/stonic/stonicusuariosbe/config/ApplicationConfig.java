@@ -1,7 +1,6 @@
-package stonic.config;
+package stonic.stonicusuariosbe.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -13,10 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import stonic.model.UsuarioRepository;
+import stonic.stonicusuariosbe.model.UsuarioRepository;
 
-@Service
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {

@@ -1,4 +1,4 @@
-package stonic.controller;
+package stonic.stonicusuariosbe.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import stonic.model.AuthResponse;
-import stonic.model.LoginRequest;
-import stonic.model.RegisterRequest;
-import stonic.service.AuthService;
+import stonic.stonicusuariosbe.model.AuthResponse;
+import stonic.stonicusuariosbe.model.LoginRequest;
+import stonic.stonicusuariosbe.model.RegisterRequest;
+import stonic.stonicusuariosbe.service.AuthService;
 
 @RestController
 @RequestMapping("/auth")

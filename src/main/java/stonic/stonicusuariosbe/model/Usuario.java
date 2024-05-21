@@ -1,4 +1,4 @@
-package stonic.model;
+package stonic.stonicusuariosbe.model;
 
 import java.io.Serial;
 import java.util.Collection;

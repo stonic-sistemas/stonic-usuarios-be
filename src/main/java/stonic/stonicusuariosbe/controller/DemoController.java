@@ -1,4 +1,4 @@
-package stonic.controller;
+package stonic.stonicusuariosbe.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

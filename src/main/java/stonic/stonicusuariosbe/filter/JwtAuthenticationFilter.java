@@ -1,4 +1,4 @@
-package stonic.filter;
+package stonic.stonicusuariosbe.filter;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import stonic.service.JwtService;
+import stonic.stonicusuariosbe.service.JwtService;
 
 @Component
 @RequiredArgsConstructor
