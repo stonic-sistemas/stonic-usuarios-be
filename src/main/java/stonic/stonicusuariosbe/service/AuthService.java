@@ -6,20 +6,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-
 import stonic.stonicusuariosbe.model.AuthResponse;
 import stonic.stonicusuariosbe.model.LoginRequest;
 import stonic.stonicusuariosbe.model.RegisterRequest;
 import stonic.stonicusuariosbe.model.Usuario;
 import stonic.stonicusuariosbe.model.UsuarioRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 	private final UsuarioRepository usuarioRepository;
-	private final PasswordEncoder passwordEncoder;
 	private final JwtService jwtService;
+	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {

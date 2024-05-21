@@ -39,7 +39,6 @@ public class Usuario implements UserDetails{
 	@GeneratedValue
 	Integer idusuario;
 	@Basic
-	@Column(nullable = false)
 	String nombre;
 	String apellidos;
 	String clave;
