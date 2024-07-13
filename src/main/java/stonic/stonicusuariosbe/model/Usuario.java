@@ -2,6 +2,8 @@ package stonic.stonicusuariosbe.model;
 
 import java.io.Serial;
 import java.util.Collection;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -9,7 +11,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="gen_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre"})})
+@Table(name="gen_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"correo"})})
 public class Usuario implements UserDetails{
 	/**
 	 * 
@@ -39,12 +40,18 @@ public class Usuario implements UserDetails{
 	@GeneratedValue
 	Integer idusuario;
 	@Basic
-	String nombre;
+	String nombres;
 	String apellidos;
 	String clave;
 	String dni;
 	String telefono;
-	Integer idestado;
+	String correo;
+	String nickname;
+	LocalDateTime fecharegistro;
+	LocalDate fechanacimiento;
+	Boolean flagactivo;
+	Boolean flagverificado;
+
 	@Enumerated(EnumType.STRING)
 	RolUsuario rol;
 	@Override
@@ -81,6 +88,6 @@ public class Usuario implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.nombre;
+		return this.nombres;
 	}
 }

@@ -6,6 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import stonic.stonicusuariosbe.model.AuthResponse;
 import stonic.stonicusuariosbe.model.LoginRequest;
 import stonic.stonicusuariosbe.model.RegisterRequest;
@@ -23,8 +26,8 @@ public class AuthService {
 	private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails usuario =usuarioRepository.findByNombre(request.getUsername()).orElseThrow();
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getCorreo(), request.getClave()));
+        UserDetails usuario =usuarioRepository.findByCorreo(request.getCorreo()).orElseThrow();
         String token=jwtService.getToken(usuario);
         return AuthResponse.builder()
             .token(token)
@@ -33,11 +36,17 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request) {
     	Usuario usuario = Usuario.builder()
-    			.nombre(request.getNombre())
+    			.nombres(request.getNombres())
     			.apellidos(request.getApellidos())
     			.clave(passwordEncoder.encode( request.getClave()))
 				.dni(request.getDni())
 				.telefono(request.getTelefono())
+				.correo(request.getCorreo())
+				.nickname(request.getNickname())
+				.fechanacimiento(request.getFechanacimiento())
+				.flagactivo(true)
+				.flagverificado(false)
+				.fecharegistro(LocalDateTime.now())
     			.build()
     	;
     	usuarioRepository.save(usuario);
