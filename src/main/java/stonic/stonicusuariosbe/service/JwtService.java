@@ -43,7 +43,7 @@ public class JwtService {
     }
     */
     public String getUsernameFromToken(String token) {
-        return getClaim(token, claims -> claims.get("nombre", String.class));
+        return getClaim(token, claims -> claims.get("correo", String.class));
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {

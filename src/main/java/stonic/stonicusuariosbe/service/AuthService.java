@@ -3,17 +3,14 @@ package stonic.stonicusuariosbe.service;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 
-import stonic.stonicusuariosbe.model.AuthResponse;
-import stonic.stonicusuariosbe.model.LoginRequest;
-import stonic.stonicusuariosbe.model.RegisterRequest;
-import stonic.stonicusuariosbe.model.Usuario;
-import stonic.stonicusuariosbe.model.UsuarioRepository;
+import stonic.stonicusuariosbe.model.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,14 +22,30 @@ public class AuthService {
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationManager authenticationManager;
 
-    public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getCorreo(), request.getClave()));
-        UserDetails usuario =usuarioRepository.findByCorreo(request.getCorreo()).orElseThrow();
-        String token=jwtService.getToken(usuario);
-        return AuthResponse.builder()
-            .token(token)
-            .build();
-    }
+	public AuthResponse login(LoginRequest request) {
+		try {
+			System.out.println(request.getCorreo());
+			System.out.println(request.getClave());
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getCorreo(), request.getClave()));
+
+			UserDetails usuario = usuarioRepository.findByCorreo(request.getCorreo())
+					.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con correo: " + request.getCorreo()));
+
+			System.out.println(usuarioRepository.findByCorreo(request.getCorreo().toString()));
+
+
+			String token = jwtService.getToken(usuario);
+
+			System.out.println(token.toString());
+
+			return AuthResponse.builder()
+					.token(token)
+					.build();
+		} catch (Exception e) {
+			// Manejar cualquier excepción que pueda surgir durante la autenticación o búsqueda de usuario
+			throw new RuntimeException("Error durante el inicio de sesión", e);
+		}
+	}
 
     public AuthResponse register(RegisterRequest request) {
     	Usuario usuario = Usuario.builder()
@@ -47,6 +60,7 @@ public class AuthService {
 				.flagactivo(true)
 				.flagverificado(false)
 				.fecharegistro(LocalDateTime.now())
+				.rol(RolUsuario.USER)
     			.build()
     	;
     	usuarioRepository.save(usuario);
