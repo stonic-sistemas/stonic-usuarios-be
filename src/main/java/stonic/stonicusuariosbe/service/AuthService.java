@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalDate;
 
 import stonic.stonicusuariosbe.model.*;
 
@@ -24,19 +23,12 @@ public class AuthService {
 
 	public AuthResponse login(LoginRequest request) {
 		try {
-			System.out.println(request.getCorreo());
-			System.out.println(request.getClave());
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getCorreo(), request.getClave()));
 
 			UserDetails usuario = usuarioRepository.findByCorreo(request.getCorreo())
 					.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con correo: " + request.getCorreo()));
 
-			System.out.println(usuarioRepository.findByCorreo(request.getCorreo().toString()));
-
-
 			String token = jwtService.getToken(usuario);
-
-			System.out.println(token.toString());
 
 			return AuthResponse.builder()
 					.token(token)
