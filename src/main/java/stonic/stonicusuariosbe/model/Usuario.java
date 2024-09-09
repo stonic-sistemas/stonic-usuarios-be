@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.util.Collection;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -28,7 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="gen_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"correo"})})
+@Table(name="usu_usuario", uniqueConstraints = {@UniqueConstraint(columnNames = {"correo"})})
 public class Usuario implements UserDetails{
 	/**
 	 * 
@@ -47,17 +48,16 @@ public class Usuario implements UserDetails{
 	String telefono;
 	String correo;
 	String nickname;
-	LocalDateTime fecharegistro;
+	LocalDateTime audfecharegistro;
 	LocalDate fechanacimiento;
 	Boolean flagactivo;
 	Boolean flagverificado;
 
-	@Enumerated(EnumType.STRING)
-	RolUsuario rol;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return List.of(new SimpleGrantedAuthority((rol.name())));
+		return Collections.emptyList();
+		//return List.of(new SimpleGrantedAuthority((rol.name())));
 		//return null;
 	}
 	@Override

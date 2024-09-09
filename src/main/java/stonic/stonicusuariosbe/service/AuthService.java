@@ -51,8 +51,8 @@ public class AuthService {
 				.fechanacimiento(request.getFechanacimiento())
 				.flagactivo(true)
 				.flagverificado(false)
-				.fecharegistro(LocalDateTime.now())
-				.rol(RolUsuario.USER)
+				.audfecharegistro(LocalDateTime.now())
+				//.rol(RolUsuario.USER)
     			.build()
     	;
     	usuarioRepository.save(usuario);
